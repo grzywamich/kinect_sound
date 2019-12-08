@@ -1,5 +1,5 @@
 float[] RANGE = linspace(0, width, midiSequence.length);
-int ANGLE_RANGE = 65;
+int ANGLE_RANGE = 75;
 
 public static float[] linspace(float start, float stop, int n)
 {

@@ -36,10 +36,10 @@ public void restart_click1(GButton source, GEvent event) { //_CODE_:restart:5363
   rightSaw_select.setLocalColorScheme(GCScheme.RED_SCHEME);
   
   leftOsc.stop();
-  leftOsc.type_selected = "pulse";
+  leftOsc.set_type("pulse");
 
   rightOsc.stop();
-  rightOsc.type_selected = "pulse";
+  rightOsc.set_type("pulse");
 
   calibration_finished = false;
   
@@ -50,41 +50,39 @@ public void leftPulse_click(GButton source, GEvent event) { //_CODE_:leftPulse_s
   println("leftPulse_select - GButton >> GEvent." + event + " @ " + millis());
 
   if(!calibration_finished){return;}
-  if(leftOsc_selected=="pulse"){return;}
+  if(leftOsc.get_type()=="pulse"){return;}
   leftPulse_select.setLocalColorScheme(GCScheme.GREEN_SCHEME);
   leftTri_select.setLocalColorScheme(GCScheme.RED_SCHEME);
   leftSaw_select.setLocalColorScheme(GCScheme.RED_SCHEME);
   
   leftOsc.stop();
-  leftOsc.type_selected = "pulse";
-  //leftOsc.play();
+  leftOsc.set_type("pulse");
 
 } //_CODE_:leftPulse_select:819994:
 
 public void leftTri_click(GButton source, GEvent event) { //_CODE_:leftTri_select:229900:
   println("button2 - GButton >> GEvent." + event + " @ " + millis());
   if(!calibration_finished){return;}
-  if(leftOsc_selected=="tri"){return;}
+  if(leftOsc.get_type()=="tri"){return;}
   leftPulse_select.setLocalColorScheme(GCScheme.RED_SCHEME);
   leftTri_select.setLocalColorScheme(GCScheme.GREEN_SCHEME);
   leftSaw_select.setLocalColorScheme(GCScheme.RED_SCHEME);
 
   leftOsc.stop();
-  leftOsc.type_selected = "tri";
-  //leftOsc.play();
+  leftOsc.set_type("tri");
+
 } //_CODE_:leftTri_select:229900:
 
 public void leftSaw_click(GButton source, GEvent event) { //_CODE_:leftSaw_select:548797:
   println("button3 - GButton >> GEvent." + event + " @ " + millis());
   if(!calibration_finished){return;}
-  if(leftOsc_selected=="saw"){return;}
+  if(leftOsc.get_type()=="saw"){return;}
   leftPulse_select.setLocalColorScheme(GCScheme.RED_SCHEME);
   leftTri_select.setLocalColorScheme(GCScheme.RED_SCHEME);
   leftSaw_select.setLocalColorScheme(GCScheme.GREEN_SCHEME);
 
   leftOsc.stop();
-  leftOsc.type_selected = "saw";
-  //leftOsc.play();
+  leftOsc.set_type("saw");
 } //_CODE_:leftSaw_select:548797:
 
   //=================================================================//
@@ -92,26 +90,26 @@ public void leftSaw_click(GButton source, GEvent event) { //_CODE_:leftSaw_selec
 public void rightPulse_click(GButton source, GEvent event) { //_CODE_:rightPulse_select:321313:
   println("rightPulse_select - GButton >> GEvent." + event + " @ " + millis());
   if(!calibration_finished){return;}
-  if(rightOsc_selected=="pulse"){return;}
+  if(rightOsc.get_type()=="pulse"){return;}
   rightPulse_select.setLocalColorScheme(GCScheme.GREEN_SCHEME);
   rightTri_select.setLocalColorScheme(GCScheme.RED_SCHEME);
   rightSaw_select.setLocalColorScheme(GCScheme.RED_SCHEME);
   
   rightOsc.stop();
-  rightOsc.type_selected = "pulse";
+  rightOsc.set_type("pulse");
   //rightOsc.play();
 } //_CODE_:rightPulse_select:321313:
 
 public void rightTri_click(GButton source, GEvent event) { //_CODE_:rightTri_select:821419:
   println("rightTri_select - GButton >> GEvent." + event + " @ " + millis());
   if(!calibration_finished){return;}
-  if(rightOsc_selected=="tri"){return;}
+  if(rightOsc.get_type()=="tri"){return;}
   rightPulse_select.setLocalColorScheme(GCScheme.RED_SCHEME);
   rightTri_select.setLocalColorScheme(GCScheme.GREEN_SCHEME);
   rightSaw_select.setLocalColorScheme(GCScheme.RED_SCHEME);
 
   rightOsc.stop();
-  rightOsc.type_selected = "tri";
+  rightOsc.set_type("tri");
   //rightOsc.play();
 
 } //_CODE_:rightTri_select:821419:
@@ -119,13 +117,13 @@ public void rightTri_click(GButton source, GEvent event) { //_CODE_:rightTri_sel
 public void rightSaw_click(GButton source, GEvent event) { //_CODE_:rightSaw_select:955557:
   println("rightSaw_select - GButton >> GEvent." + event + " @ " + millis());
   if(!calibration_finished){return;}
-  if(rightOsc_selected=="saw"){return;}
+  if(rightOsc.get_type()=="saw"){return;}
   rightPulse_select.setLocalColorScheme(GCScheme.RED_SCHEME);
   rightTri_select.setLocalColorScheme(GCScheme.RED_SCHEME);
   rightSaw_select.setLocalColorScheme(GCScheme.GREEN_SCHEME);
 
   rightOsc.stop();
-  rightOsc.type_selected = "saw";
+  rightOsc.set_type("saw");
   //rightOsc.play();
   
 } //_CODE_:rightSaw_select:955557:

@@ -18,12 +18,18 @@ int RIGHT_KNEE = Kinect.NUI_SKELETON_POSITION_KNEE_RIGHT;
 float LeftHandMag;
 float RightHandMag;
 
+float LeftHandAngle;
+float RightHandAngle;
+
 float LeftFootMag;
 float RightFootMag;
 
 float FeetMag;
 
 float SkeletonPosZ;
+
+int LeftMidiIdx;
+int RightMidiIdx;
 
 //=================================================//
 
@@ -35,14 +41,18 @@ void gather_data(SkeletonData skeleton)
        {
          float[] left_hand_data = hand_to_data(skeleton, LEFT_HAND);  
          LeftHandMag = left_hand_data[0];
-         LeftMidiIdx = map_angle_to_scale_idx(left_hand_data[1], midiSequence.length);
+         LeftHandAngle = left_hand_data[1];
+         //text("LEFT ANGLE: "+LeftHandAngle, width*0.5, height*0.5);
+         LeftMidiIdx = map_angle_to_scale_idx(LeftHandAngle, midiSequence.length);
        }
        
        if((if_bones_tracked(skeleton, RIGHT_HAND)))
        {
          float[] right_hand_data = hand_to_data(skeleton, RIGHT_HAND);  
          RightHandMag = right_hand_data[0];
-         RightMidiIdx = map_angle_to_scale_idx(right_hand_data[1], bassMidiSequence.length);
+         RightHandAngle = right_hand_data[1];
+         //text("RIGHT ANGLE: "+RightHandAngle, width*0.5, height*0.6);
+         RightMidiIdx = map_angle_to_scale_idx(RightHandAngle, bassMidiSequence.length);
        }
    }
      
