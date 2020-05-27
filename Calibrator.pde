@@ -2,6 +2,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Arrays;
 
+int CALIBRATION_TIME = 5*1000; //milisecs
+
+
 float[] MAX_LEFT_HAND_MAG_ARR = new float[5];
 float[] MAX_RIGHT_HAND_MAG_ARR = new float[5];
 
@@ -13,7 +16,6 @@ float MAX_RIGHT_FOOT_MAG = Float.MIN_VALUE;
 
 int calibration_timestamp;
 Boolean calibration_finished = false;
-int CALIBRATION_TIME = 5*1000; //milisecs
 int final_countdown;
 
 void calibrate(){
@@ -49,11 +51,11 @@ void calibrate(){
   y += height*0.05;
   
   MAX_Z = _calibrate(SkeletonPosZ, MAX_Z);
-  text(String.format("Max depth-Z value = %.2f", MAX_Z), x, y);
+  text(String.format("Max depth-Z value = %.2f m", MAX_Z / 10000), x, y);
   y += height*0.05;
   
   MIN_Z = -_calibrate(-SkeletonPosZ, -MIN_Z);
-  text(String.format("Min depth-Z foot max value = %.2f", MIN_Z), x, y);
+  text(String.format("Min depth-Z value = %.2f m", MIN_Z / 10000), x, y);
   y += height*0.05;
   
   // if nothing changes in 5 seconds, end calibration

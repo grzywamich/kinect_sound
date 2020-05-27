@@ -84,16 +84,12 @@ void setup()
 
 }
 
-
 void draw()
 {
+  
   enable_image();
   handle_bodies();
-  
-  if(mousePressed)
-  {
-    print("DEBUG");
-  }
+
 }
 
 void handle_bodies(){
@@ -105,7 +101,7 @@ void handle_bodies(){
     }
     else if(prev_bodies_size!=0 && bodies.size()==0)
     {
-      // what to do if I'm not tracked anymore ??
+      // stop sound if I am not tracked anymore
       leftOsc.stop(); //<>//
       rightOsc.stop();
     }

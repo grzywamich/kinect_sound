@@ -5,7 +5,7 @@ void enable_image(){
   // background
   background(0);
   // pip screen in right bottom corner of RGB camera
-  image(kinect.GetImage(), width*(1-pip_size), height*(1-pip_size), width*pip_size, height*pip_size);
+  image(kinect.GetImage(), width - 640, height - 480, 640, 480);
   
 }
 

@@ -14,8 +14,8 @@
  * =========================================================
  */
 
-public void restart_click1(GButton source, GEvent event) { //_CODE_:restart:536311:
-  println("restart - GButton >> GEvent." + event + " @ " + millis());
+public void restart_click1(GButton source, GEvent event) {
+
   MAX_LEFT_HAND_MAG_ARR = new float[5];
   MAX_RIGHT_HAND_MAG_ARR = new float[5];
   
@@ -35,6 +35,11 @@ public void restart_click1(GButton source, GEvent event) { //_CODE_:restart:5363
   rightTri_select.setLocalColorScheme(GCScheme.RED_SCHEME);
   rightSaw_select.setLocalColorScheme(GCScheme.RED_SCHEME);
   
+  slider_right_lfo_freq.setValue(LFO_SPEED_INIT);
+  slider_right_lfo_depth.setValue(LFO_DEPTH_INIT);
+  slider_left_lfo_freq.setValue(LFO_SPEED_INIT);
+  slider_left_lfo_depth.setValue(LFO_DEPTH_INIT);
+
   leftOsc.stop();
   leftOsc.set_type("pulse");
 
@@ -43,11 +48,10 @@ public void restart_click1(GButton source, GEvent event) { //_CODE_:restart:5363
 
   calibration_finished = false;
   
-} //_CODE_:restart:536311:
+}
 
   //===========================LEFT=================================//
-public void leftPulse_click(GButton source, GEvent event) { //_CODE_:leftPulse_select:819994:
-  println("leftPulse_select - GButton >> GEvent." + event + " @ " + millis());
+public void leftPulse_click(GButton source, GEvent event) {
 
   if(!calibration_finished){return;}
   if(leftOsc.get_type()=="pulse"){return;}
@@ -58,10 +62,9 @@ public void leftPulse_click(GButton source, GEvent event) { //_CODE_:leftPulse_s
   leftOsc.stop();
   leftOsc.set_type("pulse");
 
-} //_CODE_:leftPulse_select:819994:
+}
 
-public void leftTri_click(GButton source, GEvent event) { //_CODE_:leftTri_select:229900:
-  println("button2 - GButton >> GEvent." + event + " @ " + millis());
+public void leftTri_click(GButton source, GEvent event) {
   if(!calibration_finished){return;}
   if(leftOsc.get_type()=="tri"){return;}
   leftPulse_select.setLocalColorScheme(GCScheme.RED_SCHEME);
@@ -71,10 +74,9 @@ public void leftTri_click(GButton source, GEvent event) { //_CODE_:leftTri_selec
   leftOsc.stop();
   leftOsc.set_type("tri");
 
-} //_CODE_:leftTri_select:229900:
+}
 
-public void leftSaw_click(GButton source, GEvent event) { //_CODE_:leftSaw_select:548797:
-  println("button3 - GButton >> GEvent." + event + " @ " + millis());
+public void leftSaw_click(GButton source, GEvent event) {
   if(!calibration_finished){return;}
   if(leftOsc.get_type()=="saw"){return;}
   leftPulse_select.setLocalColorScheme(GCScheme.RED_SCHEME);
@@ -83,12 +85,11 @@ public void leftSaw_click(GButton source, GEvent event) { //_CODE_:leftSaw_selec
 
   leftOsc.stop();
   leftOsc.set_type("saw");
-} //_CODE_:leftSaw_select:548797:
+}
 
   //=================================================================//
   //===========================RIGHT=================================//
-public void rightPulse_click(GButton source, GEvent event) { //_CODE_:rightPulse_select:321313:
-  println("rightPulse_select - GButton >> GEvent." + event + " @ " + millis());
+public void rightPulse_click(GButton source, GEvent event) {
   if(!calibration_finished){return;}
   if(rightOsc.get_type()=="pulse"){return;}
   rightPulse_select.setLocalColorScheme(GCScheme.GREEN_SCHEME);
@@ -97,11 +98,9 @@ public void rightPulse_click(GButton source, GEvent event) { //_CODE_:rightPulse
   
   rightOsc.stop();
   rightOsc.set_type("pulse");
-  //rightOsc.play();
-} //_CODE_:rightPulse_select:321313:
+}
 
-public void rightTri_click(GButton source, GEvent event) { //_CODE_:rightTri_select:821419:
-  println("rightTri_select - GButton >> GEvent." + event + " @ " + millis());
+public void rightTri_click(GButton source, GEvent event) {
   if(!calibration_finished){return;}
   if(rightOsc.get_type()=="tri"){return;}
   rightPulse_select.setLocalColorScheme(GCScheme.RED_SCHEME);
@@ -110,12 +109,10 @@ public void rightTri_click(GButton source, GEvent event) { //_CODE_:rightTri_sel
 
   rightOsc.stop();
   rightOsc.set_type("tri");
-  //rightOsc.play();
 
-} //_CODE_:rightTri_select:821419:
+}
 
-public void rightSaw_click(GButton source, GEvent event) { //_CODE_:rightSaw_select:955557:
-  println("rightSaw_select - GButton >> GEvent." + event + " @ " + millis());
+public void rightSaw_click(GButton source, GEvent event) {
   if(!calibration_finished){return;}
   if(rightOsc.get_type()=="saw"){return;}
   rightPulse_select.setLocalColorScheme(GCScheme.RED_SCHEME);
@@ -124,10 +121,27 @@ public void rightSaw_click(GButton source, GEvent event) { //_CODE_:rightSaw_sel
 
   rightOsc.stop();
   rightOsc.set_type("saw");
-  //rightOsc.play();
   
-} //_CODE_:rightSaw_select:955557:
+}
   //================================================================//
+
+public void slider_right_lfo_freq_change(GSlider source, GEvent event) {
+  rightLFO.set_lfo_frequency(source.getValueI());
+
+}
+
+public void slider_left_lfo_freq_change(GSlider source, GEvent event) {
+  leftLFO.set_lfo_frequency(source.getValueI());
+
+}
+
+public void slider_right_lfo_depth_change(GSlider source, GEvent event) {
+  rightLFO.set_lfo_depth(source.getValueF());
+}
+
+public void slider_left_lfo_depth_change(GSlider source, GEvent event) {
+  leftLFO.set_lfo_depth(source.getValueF());
+}
 
 
 // Create all the GUI controls. 
@@ -137,7 +151,7 @@ public void createGUI(){
   G4P.setGlobalColorScheme(GCScheme.BLUE_SCHEME);
   G4P.setMouseOverEnabled(false);
   surface.setTitle("Sketch Window");
-
+  
   restart = new GButton(this, 0.94*width, 0.01*height, 0.05*width, 0.05*height);
   restart.setText("RESTART");
   restart.setTextBold();
@@ -170,8 +184,82 @@ public void createGUI(){
   leftSaw_select = new GButton(this, x*width, y*height, 0.03*width, 0.02*height);
   leftSaw_select.setText("Saw");
   leftSaw_select.addEventHandler(this, "leftSaw_click");
-
   //===================================================================//
+  
+  //=========================LFO Sliders===============================//
+  
+  float slider_x = x;  
+  float slider_y = y + 2*incr;
+  
+  right_lfo_label_freq = new GLabel(this, slider_x*width, slider_y*height, 0.05*width, 0.02*height);
+  right_lfo_label_freq.setTextAlign(GAlign.CENTER, GAlign.TOP);
+  right_lfo_label_freq.setText("RIGHT LFO SPEED");
+  right_lfo_label_freq.setTextBold();
+  right_lfo_label_freq.setLocalColorScheme(GCScheme.SCHEME_8);
+  right_lfo_label_freq.setOpaque(false);
+  
+  slider_y += incr;
+  
+  slider_right_lfo_freq = new GSlider(this, slider_x*width, slider_y*height, width*0.1, height*0.015, width*0.005);
+  slider_right_lfo_freq.setLimits(LFO_SPEED_INIT, 5, 30);
+  slider_right_lfo_freq.setNumberFormat(G4P.INTEGER, 2);
+  slider_right_lfo_freq.setOpaque(false);
+  slider_right_lfo_freq.addEventHandler(this, "slider_right_lfo_freq_change");
+ 
+  slider_y += incr;
+
+  right_lfo_label_depth = new GLabel(this, slider_x*width, slider_y*height, 0.05*width, 0.02*height);
+  right_lfo_label_depth.setTextAlign(GAlign.CENTER, GAlign.TOP);
+  right_lfo_label_depth.setText("RIGHT LFO DEPTH");
+  right_lfo_label_depth.setTextBold();
+  right_lfo_label_depth.setLocalColorScheme(GCScheme.SCHEME_8);
+  right_lfo_label_depth.setOpaque(false);
+  
+  slider_y += incr;
+
+  slider_right_lfo_depth = new GSlider(this, slider_x*width, slider_y*height, width*0.1, height*0.015, width*0.005);
+  slider_right_lfo_depth.setLimits(LFO_DEPTH_INIT, 0.01, 0.1);
+  slider_right_lfo_depth.setNumberFormat(G4P.DECIMAL, 2);
+  slider_right_lfo_depth.setOpaque(false);
+  slider_right_lfo_depth.addEventHandler(this, "slider_right_lfo_depth_change");
+  
+  slider_y += incr;
+
+  left_lfo_label_freq = new GLabel(this, slider_x*width, slider_y*height, 0.05*width, 0.02*height);
+  left_lfo_label_freq.setTextAlign(GAlign.CENTER, GAlign.TOP);
+  left_lfo_label_freq.setText("LEFT LFO SPEED");
+  left_lfo_label_freq.setTextBold();
+  left_lfo_label_freq.setLocalColorScheme(GCScheme.SCHEME_8);
+  left_lfo_label_freq.setOpaque(false);
+  
+  slider_y += incr;
+
+  slider_left_lfo_freq = new GSlider(this, slider_x*width, slider_y*height, width*0.1, height*0.015, width*0.005);
+  slider_left_lfo_freq.setLimits(LFO_SPEED_INIT, 5, 30);
+  slider_left_lfo_freq.setNumberFormat(G4P.INTEGER, 2);
+  slider_left_lfo_freq.setOpaque(false);
+  slider_left_lfo_freq.addEventHandler(this, "slider_left_lfo_freq_change");
+ 
+  slider_y += incr;
+  
+  left_lfo_label_depth = new GLabel(this, slider_x*width, slider_y*height, 0.05*width, 0.02*height);
+  left_lfo_label_depth.setTextAlign(GAlign.CENTER, GAlign.TOP);
+  left_lfo_label_depth.setText("LEFT LFO DEPTH");
+  left_lfo_label_depth.setTextBold();
+  left_lfo_label_depth.setLocalColorScheme(GCScheme.SCHEME_8);
+  left_lfo_label_depth.setOpaque(false);
+
+  slider_y += incr;
+
+  slider_left_lfo_depth = new GSlider(this, slider_x*width, slider_y*height, width*0.1, height*0.015, width*0.005);
+  slider_left_lfo_depth.setLimits(LFO_DEPTH_INIT, 0.01, 0.1);
+  slider_left_lfo_depth.setNumberFormat(G4P.DECIMAL, 2);
+  slider_left_lfo_depth.setOpaque(false);
+  slider_left_lfo_depth.addEventHandler(this, "slider_left_lfo_depth_change");
+  
+  
+
+  //=================================================================// 
   //===========================RIGHT===================================//
   x+=2*incr;
   y=y_bckp;
@@ -198,7 +286,6 @@ public void createGUI(){
   rightSaw_select.setText("Saw");
   rightSaw_select.addEventHandler(this, "rightSaw_click");
   //===================================================================//  
-  
 
   leftPulse_select.setLocalColorScheme(GCScheme.RED_SCHEME);
   rightPulse_select.setLocalColorScheme(GCScheme.RED_SCHEME);
@@ -221,4 +308,15 @@ GButton leftSaw_select;
 GLabel label2; 
 GButton rightPulse_select; 
 GButton rightTri_select; 
-GButton rightSaw_select; 
+GButton rightSaw_select;
+
+GSlider slider_right_lfo_freq; 
+GSlider slider_right_lfo_depth;
+
+GLabel right_lfo_label_freq;
+GLabel right_lfo_label_depth;
+
+GSlider slider_left_lfo_freq; 
+GSlider slider_left_lfo_depth;
+GLabel left_lfo_label_freq;
+GLabel left_lfo_label_depth;

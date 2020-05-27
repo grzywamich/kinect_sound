@@ -71,6 +71,8 @@ public class Oscillator{
     {
       this.lpf_stop();
       this.reverb_stop();
+      this.lfo.lfo_status = false;
+      
       this.osc.stop();
       
       this.amp = 0;
