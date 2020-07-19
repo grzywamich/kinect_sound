@@ -4,8 +4,8 @@
 int higher_oct = 4;
 int lower_oct = 2;
                    
-int[] midiSequence = set_octave(higher_oct);     // d4, f4, g4, a4, c5    from 293.66 to 523.25 Hz             
-int[] bassMidiSequence = set_octave(lower_oct);  // d3, f3, g3, a3, c4      from 146.83 to 261.63 Hz
+int[] midiSequence = set_octave(higher_oct);     // d4, f4, g4, a4, c5      from 293.66 to 523.25 Hz             
+int[] bassMidiSequence = set_octave(lower_oct);  // d2, f2, g2, a2, c3      from 146.83 to 261.63 Hz
 
 float SOUND_TRIGGER_VAL = 0.6;
 
@@ -73,12 +73,12 @@ void start_playing(Oscillator osc, float volume, float width_val, int midi_idx, 
        print_data(35, 242, 42, where_to_print, 0.1, "Pulse Width: "+pulse_width);
      }
      print_data(35, 242, 42, where_to_print, 0.15, "Amplitude: "+ volume); 
-     print_data(35, 242, 42, where_to_print, 0.2, "MIDI/Frequency: "+ midi_note+"/"+freq+"Hz"); //<>//
+     print_data(35, 242, 42, where_to_print, 0.2, "MIDI/Frequency: "+ midi_note+"/"+freq+"Hz");
 
      if(osc.is_lfo_active())
      {
        print_data(35, 242, 42, where_to_print, 0.3, "LFO active");
-       osc.freq = osc.modulate_parameter(freq); //<>//
+       osc.freq = osc.modulate_parameter(freq);
      }
      else
      {
@@ -89,7 +89,7 @@ void start_playing(Oscillator osc, float volume, float width_val, int midi_idx, 
      osc.amp = volume;
      osc.play();
 
-     osc.set(); //<>//
+     osc.set();
 
      osc.prev_freq = osc.freq;
 }

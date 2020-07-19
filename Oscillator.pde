@@ -164,7 +164,7 @@ public class Oscillator{
  
     void width(float pulse_width)
   { 
-    if(this.isPlaying) //<>//
+    if(this.isPlaying)
     {
       this.pulse_width = pulse_width;
       if(this.pulse_width!=this.prev_pulse_width){

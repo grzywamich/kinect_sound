@@ -11,14 +11,14 @@ public class OscillatorType{
     this.pulse = pulse;
     this.type_selected = type;
   }
-   //<>// //<>//
+   //<>//
   void play()
   {
       if(this.type_selected=="tri"){
         this.tri.play();
       }
       else if(this.type_selected=="saw"){
-        this.saw.play(); //<>// //<>//
+        this.saw.play(); //<>//
       }
       else if(this.type_selected=="pulse")
       {
@@ -29,10 +29,10 @@ public class OscillatorType{
   void stop()
   {
       if(this.type_selected=="tri"){
-        this.tri.stop(); //<>// //<>//
+        this.tri.stop(); //<>//
       }
       else if(this.type_selected=="saw"){
-        this.saw.stop(); //<>// //<>//
+        this.saw.stop(); //<>//
       }
       else if(this.type_selected=="pulse")
       {

@@ -102,7 +102,7 @@ void handle_bodies(){
     else if(prev_bodies_size!=0 && bodies.size()==0)
     {
       // stop sound if I am not tracked anymore
-      leftOsc.stop(); //<>//
+      leftOsc.stop();
       rightOsc.stop();
     }
     
@@ -121,6 +121,7 @@ void handle_body(int body_idx){
   }
   else
   {
+
 // =========active left oscillator==============
     process_sound(
     leftOsc,
@@ -139,9 +140,9 @@ void handle_body(int body_idx){
     RightMidiIdx, bassMidiSequence,
     SkeletonPosZ,
     RightHandAngle,
-    0.7);
+    0.6);
     
-    rightOsc.set_filter(RightFootMag, MAX_RIGHT_FOOT_MAG, 0.7, 0.25);
+    rightOsc.set_filter(RightFootMag, MAX_RIGHT_FOOT_MAG, 0.6, 0.25);
 
 // ============================================
     
